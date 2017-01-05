@@ -10,7 +10,7 @@ void main(){
   while(1){
     i = fread(&d,sizeof(dev),1,fp);
     if(i != 1) break;
-    printf("%-10s %-10s %-10s %-10s %-20s %-10s %-10s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    printf("%-10s %-10s %-10s %-20s %-10s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
   }
   printf("\n");
   fclose(fp);

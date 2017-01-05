@@ -1,6 +1,11 @@
 #include<stdio.h>
 #include"struct.h"
 
+void clear (void)
+{
+  while ( getchar() != '\n' );
+}
+
 void main() {
   dev d;
   char ch[3] = "yes";
@@ -16,7 +21,8 @@ void main() {
     printf("Enter Email\n");
     scanf("%s",d.email);
     printf("Enter Position\n");
-    scanf("%s",d.position);
+    clear();
+    scanf("%[^\n]s",d.position);
     printf("Enter skill 1\n");
     scanf("%s",d.skill1);
     printf("Enter skill 2\n");
