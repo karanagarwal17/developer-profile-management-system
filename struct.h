@@ -55,23 +55,78 @@ void read(){
   while(1){
     i = fread(&d,sizeof(dev),1,fp);
     if(i != 1) break;
-    printf("%-10s %-10s %-10s %-20s %-10s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
   }
   printf("\n");
   fclose(fp);
 }
 
 void query(){
-  int i=1;
+  int i=1,j=0,k;
+  char str[40];
   FILE *fp;
   dev d;
   fp = fopen("data.dat","r");
+  printf("What do you want to query?\n1. First Name\n2. Last Name \n3. Location\n4. Position\n");
+  scanf("%d",&k);
+  printf("Enter the string\n");
+  clear();
+  scanf("%[^\n]s",str);
   printf("\n");
-  while(1){
-    i = fread(&d,sizeof(dev),1,fp);
-    if(i != 1) break;
-    if(strcmp(d.fname,"karan") != 0) continue;
-    printf("%-10s %-10s %-20s %-10s %-10s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+  switch(k){
+
+    case 1:
+    while(1){
+      i = fread(&d,sizeof(dev),1,fp);
+      if(i != 1) break;
+      if(strcmp(d.fname,str) != 0) continue;
+      j = 1;
+      printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    }
+    if(j == 0){
+      printf("Sorry no such entry was found!!\n");
+    }
+    break;
+
+    case 2:
+    while(1){
+      i = fread(&d,sizeof(dev),1,fp);
+      if(i != 1) break;
+      if(strcmp(d.lname,str) != 0) continue;
+      j = 1;
+      printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    }
+    if(j == 0){
+      printf("Sorry no such entry was found!!\n");
+    }
+    break;
+
+    case 3:
+    while(1){
+      i = fread(&d,sizeof(dev),1,fp);
+      if(i != 1) break;
+      if(strcmp(d.location,str) != 0) continue;
+      j = 1;
+      printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    }
+    if(j == 0){
+      printf("Sorry no such entry was found!!\n");
+    }
+    break;
+
+    case 4:
+    while(1){
+      i = fread(&d,sizeof(dev),1,fp);
+      if(i != 1) break;
+      if(strcmp(d.position,str) != 0) continue;
+      j = 1;
+      printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+    }
+    if(j == 0){
+      printf("Sorry no such entry was found!!\n");
+    }
+    break;
+
   }
   printf("\n");
   fclose(fp);
