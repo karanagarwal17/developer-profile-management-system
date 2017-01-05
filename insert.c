@@ -7,12 +7,20 @@ void main() {
   FILE *fp;
   fp = fopen("data.dat","a");
   while(ch[0] == 'y'){
-    printf("Enter fname lname field location email\n");
-    scanf("%s %s %s %s %s",d.fname,d.lname,d.field,d.location,d.email);
-    printf("Enter position\n");
+    printf("Enter First Name\n");
+    scanf("%s",d.fname);
+    printf("Enter Last Name\n");
+    scanf("%s",d.lname);
+    printf("Enter Location\n");
+    scanf("%s",d.location);
+    printf("Enter Email\n");
+    scanf("%s",d.email);
+    printf("Enter Position\n");
     scanf("%s",d.position);
-    printf("Enter languages 1 2 3\n");
-    scanf("%s %s %s",d.language1,d.language2,d.language3);
+    printf("Enter skill 1\n");
+    scanf("%s",d.skill1);
+    printf("Enter skill 2\n");
+    scanf("%s",d.skill2);
     fwrite(&d,sizeof(dev),1,fp);
     printf("Enter more data ? (yes/no)\n");
     scanf("%s",ch);
