@@ -15,7 +15,7 @@ void query();
 void read();
 void clear();
 void insert();
-
+void alter();
 
 
 void insert() {
@@ -44,6 +44,44 @@ void insert() {
 
 void clear(){
   while ( getchar() != '\n' );
+}
+
+void alter() {
+  int i=1;
+  FILE *fp;
+  dev d;
+  char str[20];
+  fp = fopen("data.dat","r+");
+  printf("Enter the First Name of the person whose details you want to change\n");
+  scanf("%s",str);
+  while(1){
+    i = fread(&d,sizeof(dev),1,fp);
+    if(i != 1) break;
+    if(strcmp(str,d.fname) == 0){
+      printf("%-10s %-10s %-10s %-30s %-20s %-10s %-10s\n",d.fname, d.lname,d.location,d.email,d.position,d.skill1,d.skill2);
+      printf("Enter First Name\n");
+      scanf("%s",d.fname);
+      printf("Enter Last Name\n");
+      scanf("%s",d.lname);
+      printf("Enter Location\n");
+      clear();
+      scanf("%[^\n]s",d.location);
+      printf("Enter Email\n");
+      scanf("%s",d.email);
+      printf("Enter Position\n");
+      clear();
+      scanf("%[^\n]s",d.position);
+      printf("Enter skill 1\n");
+      scanf("%s",d.skill1);
+      printf("Enter skill 2\n");
+      scanf("%s",d.skill2);
+      fseek(fp,-sizeof(dev),SEEK_CUR);
+      fwrite(&d,sizeof(dev),1,fp);
+      break;
+    }
+  }
+  printf("\n");
+  fclose(fp);
 }
 
 void read(){
